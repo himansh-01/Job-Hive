@@ -50,24 +50,24 @@ const Navbar = () => {
         <div className='bg-white'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16 gap-4'>
                 <div>
-                    <h1 className='text-2xl font-bold'>Job<span className='text-[#F83002]'>Hive</span></h1>
+                    <h1 className='text-2xl font-bold'>Job<span className='text-blue-600'>Hive</span></h1>
                 </div>
                 <div className='flex items-center gap-1 sm:gap-4'>
                     <ul className='hidden md:flex font-medium items-center gap-5'>
                         {
                             user && user.role === 'recruiter' ? (
                                 <>
-                                    <li><Link to="/admin/companies">Companies</Link></li>
-                                    <li><Link to="/admin/jobs">Jobs</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/admin/companies">Companies</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/admin/jobs">Jobs</Link></li>
                                 </>
                             ) : (
                                 <>
-                                    <li><Link to="/">Home</Link></li>
-                                    <li><Link to="/jobs">Jobs</Link></li>
-                                    <li><Link to="/roadmaps">roadmaps</Link></li>
-                                    <li><Link to="/browse">Browse</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/">Home</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/jobs">Jobs</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/roadmaps">roadmaps</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/browse">Browse</Link></li>
 
-                                    <li><Link to="/admin">Post Job</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/admin">Post Job</Link></li>
 
                                 </>
                             )
@@ -85,14 +85,14 @@ const Navbar = () => {
                         {
                             user && user.role === 'recruiter' ? (
                                 <>
-                                    <li><Link to="/admin/companies">Companies</Link></li>
-                                    <li><Link to="/admin/jobs">Jobs</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/admin/companies">Companies</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/admin/jobs">Jobs</Link></li>
                                 </>
                             ) : (
                                 <>
-                                    <li><Link to="/">Home</Link></li>
-                                    <li><Link to="/jobs">Jobs</Link></li>
-                                    <li><Link to="/browse">Browse</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/">Home</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/jobs">Jobs</Link></li>
+                                    <li className='text-gray-600 hover:text-gray-900'><Link to="/browse">Browse</Link></li>
                                 </>
                             )
                         }
@@ -102,8 +102,8 @@ const Navbar = () => {
                     {
                         !user ? (
                             <div className='flex items-center gap-2'>
-                                <Link to="/login"><Button variant="outline" className="h-8 w-16 sm:h-10 sm:w-20">Login</Button></Link>
-                                <Link to="/signup"><Button className="bg-[#6A38C2] hover:bg-[#5b30a6] h-8 w-16 sm:h-10 sm:w-20">Signup</Button></Link>
+                                <Link to="/login"><Button variant="outline" className="border-gray-300 text-gray-700 hover:border-gray-400 h-8 w-16 sm:h-10 sm:w-20">Login</Button></Link>
+                                <Link to="/signup"><Button className="bg-blue-600 text-white hover:bg-blue-700 h-8 w-16 sm:h-10 sm:w-20">Signup</Button></Link>
                             </div>
                         ) : (
                             <Popover onOpenChange={handlePopOverChange}>
