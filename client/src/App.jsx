@@ -61,12 +61,12 @@ const appRouter = createBrowserRouter([
     path: "/roadmaps",
     element: <Roadmaps />
   },
-  // {
+  {
 
 
-  //   path:"/admin",
-  //   element: <AdminDashboard/>
-  // },
+    path:"/admin",
+    element: <AdminDashboard/>
+  },
   {
     path:"/admin/companies",
     element: <ProtectedRoute><Companies/></ProtectedRoute>
