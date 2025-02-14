@@ -46,7 +46,7 @@ const OAuth = () => {
   return (
     <Button
       type="button"
-      className="w-full my-4 flex items-center justify-center gap-2 p-4"
+      className="sm:w-[10rem] h-[3.7rem] lg:h-11 md:h-12 sm:h-13 my-4 flex items-center justify-center gap-2 p-4 border border-black hover:bg-gray-300 w-[8rem] text-wrap"
       onClick={handleGoogle}
     >
       Continue with Google

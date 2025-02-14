@@ -1,4 +1,5 @@
 const tailwindcssAnimate = require("tailwindcss-animate");
+const { custom } = require("zod");
 
 module.exports = {
   darkMode: ["class"],
@@ -29,6 +30,9 @@ module.exports = {
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
       },
+      fontFamily:{
+        custom: ['Aeonik', 'sans-serif']
+      }
     },
   },
   plugins: [tailwindcssAnimate],

@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLoading, setUser } from '@/redux/authSlice';
 import { loginInfoSchema} from '../utils/formValidation';
 import OAuth from './OAuth';
+
 const Login = () => {
     const [input, setInput] = useState({
         email: "",
@@ -21,6 +22,7 @@ const Login = () => {
         role: "",
     });
     const [error,setError]=useState(null)
+    const [selected, setSelected] = useState('Student');
     
     const [showPassword, setShowPassword] = useState(false);
     const dispatch = useDispatch();
@@ -84,8 +86,32 @@ const Login = () => {
     return (
         <div>
             <Navbar />
-            <div className='flex items-center justify-center max-w-7xl mx-auto'>
-                <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10'>
+            <div className='flex flex-col items-center justify-center max-w-7xl mx-auto'>
+                <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+                  <label className={`px-4 py-2 cursor-pointer ${selected === 'Student' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600'}`}>
+                    <input
+                      type="radio"
+                      name="toggle"
+                      value={input.role === 'Student'}
+                      checked={selected === 'Student'}
+                      onChange={() => setSelected('Student')}
+                      className="hidden"
+                    />
+                    Student
+                  </label>
+                  <label className={`px-4 py-2 cursor-pointer ${selected === 'Recruiter' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600'}`}>
+                    <input
+                      type="radio"
+                      name="toggle"
+                      value={input.role === 'Recruiter'}
+                      checked={selected === 'Recruiter'}
+                      onChange={() => setSelected('Recruiter')}
+                      className="hidden"
+                    />
+                    Recruiter
+                  </label>
+                </div>
+                <form onSubmit={submitHandler} className='sm:w-1/2 w-3/4 border-[0.1rem] border-gray-200 rounded-md p-5 my-10 shadow-md'>
                     <h1 className='font-bold text-xl mb-5'>Login</h1>
                     <div className='my-2'>
                         <Label>Email</Label>
@@ -95,6 +121,7 @@ const Login = () => {
                             name="email"
                             onChange={changeEventHandler}
                             placeholder="Example@gmail.com"
+                            className = "bg-gray-300 placeholder:text-gray-600"
                         />
                     </div>
 
@@ -106,6 +133,7 @@ const Login = () => {
                             name="password"
                             onChange={changeEventHandler}
                             placeholder="Enter your password"
+                            className = "bg-gray-300 placeholder:text-gray-600"
                         />
                         <div
                             className='absolute right-2 top-9 cursor-pointer'
@@ -115,42 +143,16 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <div className='flex items-center justify-between'>
-                        <RadioGroup className="flex items-center gap-4 my-5">
-                            <div className="flex items-center space-x-2">
-                                <Input
-                                    type="radio"
-                                    name="role"
-                                    value="student"
-                                    checked={input.role === 'student'}
-                                    onChange={changeEventHandler}
-                                    className="cursor-pointer"
-                                />
-                                <Label htmlFor="r1">Student</Label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <Input
-                                    type="radio"
-                                    name="role"
-                                    value="recruiter"
-                                    checked={input.role === 'recruiter'}
-                                    onChange={changeEventHandler}
-                                    className="cursor-pointer"
-                                />
-                                <Label htmlFor="r2">Recruiter</Label>
-                            </div>
-                        </RadioGroup>
-                    </div>
                     {
                         loading ? (
                             <Button className="w-full my-4">
                                 <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait
                             </Button>
                         ) : (
-                            <>
-                            <Button type="submit" className="w-full my-4">Login</Button>
+                            <div className="flex flex-col justify-self-center items-center">
+                            <Button type="submit" className="w-[8rem] sm:w-[10rem] text-white bg-blue-600 sm:my-4 my-2 hover:bg-blue-700">Login</Button>
                             <OAuth/>
-                            </> 
+                            </div> 
                         )
                     }
                     <span className='text-sm'>Don't have an account? <Link to="/signup" className='text-blue-600'>Signup</Link></span>

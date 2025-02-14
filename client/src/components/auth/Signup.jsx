@@ -30,6 +30,7 @@ const Signup = () => {
   const navigate = useNavigate();
   
   const [showPassword, setShowPassword] = useState(false);
+  const [selected, setSelected] = useState('Student');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -101,10 +102,34 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex flex-col items-center justify-center max-w-7xl mx-auto">
+        <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+          <label className={`px-4 py-2 cursor-pointer ${selected === 'Student' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600'}`}>
+            <input
+              type="radio"
+              name="toggle"
+              value={input.role === 'Student'}
+              checked={selected === 'Student'}
+              onChange={() => setSelected('Student')}
+              className="hidden"
+            />
+            Student
+          </label>
+          <label className={`px-4 py-2 cursor-pointer ${selected === 'Recruiter' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600'}`}>
+            <input
+              type="radio"
+              name="toggle"
+              value={input.role === 'Recruiter'}
+              checked={selected === 'Recruiter'}
+              onChange={() => setSelected('Recruiter')}
+              className="hidden"
+            />
+            Recruiter
+          </label>
+        </div>
         <form
           onSubmit={(e) => submitHandler(e)}
-          className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
+          className="sm:w-1/2 w-3/4 border-[0.1rem] border-gray-200 rounded-md p-4 sm:p-8 my-10 shadow-md"
         >
           <h1 className="font-bold text-xl mb-5">Sign Up</h1>
           <div className="my-2">
@@ -115,6 +140,7 @@ const Signup = () => {
               name="fullname"
               onChange={changeEventHandler}
               placeholder="Your name here"
+              className= "bg-gray-300 placeholder:text-gray-600"
             />
           </div>
 
@@ -126,6 +152,7 @@ const Signup = () => {
               name="email"
               onChange={changeEventHandler}
               placeholder="Example@gmail.com"
+              className= "bg-gray-300 placeholder:text-gray-600"
             />
           </div>
           <div className="my-2">
@@ -136,6 +163,7 @@ const Signup = () => {
               name="phoneNumber"
               onChange={changeEventHandler}
               placeholder="1234567890"
+              className= "bg-gray-300 placeholder:text-gray-600"
             />
           </div>
           <div className="my-2 relative">
@@ -146,6 +174,7 @@ const Signup = () => {
               name="password"
               onChange={changeEventHandler}
               placeholder="Enter password here"
+              className= "bg-gray-300 placeholder:text-gray-600"
             />
             <div
               className="absolute right-2 top-9 cursor-pointer"
@@ -159,32 +188,8 @@ const Signup = () => {
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <RadioGroup className="flex items-center gap-4 my-5">
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="radio"
-                  name="role"
-                  value="student"
-                  checked={input.role === "student"}
-                  onChange={changeEventHandler}
-                  className="cursor-pointer"
-                />
-                <Label htmlFor="r1">Student</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="radio"
-                  name="role"
-                  value="recruiter"
-                  checked={input.role === "recruiter"}
-                  onChange={changeEventHandler}
-                  className="cursor-pointer"
-                />
-                <Label htmlFor="r2">Recruiter</Label>
-              </div>
-            </RadioGroup>
-            <div className="flex items-center gap-2">
-              <Label>Profile</Label>
+            <div className="flex items-center gap-2 lg:ml-0 ml-4">
+              <Label className="hidden lg:block">Profile</Label>
               <Input
                 accept="image/*"
                 type="file"
@@ -199,12 +204,12 @@ const Signup = () => {
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait{" "}
             </Button>
           ) : (
-            <>
-            <Button type="submit" className="w-full my-4">
+            <div className="flex flex-col justify-self-center items-center">
+            <Button type="submit" className=" sm:w-[10rem] w-[8rem] text-white my-2 bg-blue-600 hover:bg-blue-700">
               Signup
             </Button>
             <OAuth/>
-            </>
+            </div>
           )}
           <span className="text-sm">
             Already have an account?{" "}
